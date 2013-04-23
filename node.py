@@ -1,6 +1,6 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 import os
-from .commands import mkdir_p, sudo
+from commands import mkdir_p, sudo
 
 
 class GitDeploy(object):
