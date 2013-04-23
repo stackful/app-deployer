@@ -36,8 +36,9 @@ class GitDeploy(object):
 
     def restart(self):
         print("Restarting: {} ...".format(self.app_name))
-        # Restart our Upstart job
-        sudo("restart {}".format(self.app_name))
+        # Ignore stop errors -- usually because the app hasn't been started
+        sudo("stop {0} || true".format(self.app_name))
+        sudo("start {0}".format(self.app_name))
 
     def app_run(self, cmd):
         sudo("cd '{}' && {}".format(self.app_dir, cmd), self.app_user)
