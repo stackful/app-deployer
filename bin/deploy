@@ -2,7 +2,7 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 import sys
 from config import App
-from node import GitDeploy
+import git, node
 
 
 if len(sys.argv) != 1 + 4:
@@ -12,5 +12,6 @@ if len(sys.argv) != 1 + 4:
 app_user, app_name, source_repo, app_dir = sys.argv[1:]
 
 app = App(app_user, app_name, source_repo, app_dir)
-deployer = GitDeploy(app)
-deployer.deploy()
+deployers = [git.Deploy(app), node.Deploy(app)]
+for deployer in deployers:
+    deployer.deploy()
