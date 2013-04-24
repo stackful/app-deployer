@@ -5,7 +5,7 @@ from commands import mkdir_p, sudo
 
 def ensure_repo(app):
     if not os.path.exists(app.target):
-        mkdir_p(app.target)
+        mkdir_p(app.target, root=True)
         sudo("chown {} '{}'".format(app.user, app.target))
 
     git_dir = os.path.join(app.target, ".git")
@@ -16,7 +16,7 @@ def ensure_repo(app):
             app.run("rm -rf * .* || true")
 
         app.run("git init")
-        app.run("git remote add origin '{}'".format(source_repo))
+        app.run("git remote add origin '{}'".format(app.source))
 
 def pull_latest(app):
     app.run("git fetch -f origin master")

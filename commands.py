@@ -12,11 +12,8 @@ def sudo(cmd, user="root"):
     run(sudo_cmd)
 
 
-def mkdir_p(path):
-    try:
-        os.makedirs(path)
-    except OSError as exc:
-        if exc.errno == errno.EEXIST and os.path.isdir(path):
-            pass
-        else:
-            raise
+def mkdir_p(path, root=False):
+    if not sudo:
+        run("mkdir -p '{}'".format(path))
+    else:
+        sudo("mkdir -p '{}'".format(path))
