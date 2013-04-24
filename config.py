@@ -7,12 +7,12 @@ import os
 class App(object):
     config_file = os.path.join("/etc", "stackful", "node.json")
 
-    def __init__(self):
+    def __init__(self, app_user=os.getlogin()):
         config = {}
         with open(App.config_file, "r") as cf:
             config = json.load(cf)
 
-        self.user = config["stackful-node"]["user"]
+        self.user = app_user
         self.name = config["stackful-node"]["app-name"]
         self.source = "/home/{user}/{name}.git".format(user=self.user, name=self.name)
         self.target = config["stackful-node"]["app-home"]

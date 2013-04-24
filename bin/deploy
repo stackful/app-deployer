@@ -4,7 +4,13 @@ from config import App
 import sys
 import git, node
 
-app = App()
+if len(sys.argv) != 2:
+    print("deploy <app-user>")
+    sys.exit(255)
+
+app_user = sys.argv[1].strip()
+
+app = App(app_user)
 git.update(app)
 
 available_deployers = [node]
