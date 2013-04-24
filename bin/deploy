@@ -12,6 +12,7 @@ if len(sys.argv) != 1 + 4:
 app_user, app_name, source_repo, app_dir = sys.argv[1:]
 
 app = App(app_user, app_name, source_repo, app_dir)
-deployers = [git.Deploy(app), node.Deploy(app)]
+
+deployers = [git, node]
 for deployer in deployers:
-    deployer.deploy()
+    deployer.deploy(app)
