@@ -5,9 +5,11 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import os
 import sys
 import json
+import node
+from config import App
 
 if len(sys.argv) != 2:
-    print("run-web <config file>")
+    print("stackful-node-web <config file>")
     sys.exit(255)
 
 config_file = sys.argv[1]
@@ -27,5 +29,13 @@ flushables = [sys.stdout, sys.stderr]
 for f in flushables:
     f.flush()
 
+app = App()
+available_deployers = [node]
+deployers = [deployer for deployer in available_deployers if deployer.detect(app)]
+if not deployers:
+    print("Cannot start app. Unknown stack type.")
+    sys.exit(255)
+
+executable, args = deployers[0].server_command(app)
 #replace current process with node, passing the custom environment
-os.execvpe("node", ["node", "app.js"], web_env)
+os.execvpe(executable, args, web_env)

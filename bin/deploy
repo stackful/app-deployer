@@ -1,22 +1,18 @@
 #!/usr/bin/env python
 from __future__ import absolute_import, division, print_function, unicode_literals
-import sys
 from config import App
+import sys
 import git, node
 
-
-if len(sys.argv) != 1 + 4:
-    print("deploy.py <app user> <app name> <source repo> <app_dir>")
-    sys.exit(0)
-
-app_user, app_name, source_repo, app_dir = sys.argv[1:]
-
-app = App(app_user, app_name, source_repo, app_dir)
-
+app = App()
 git.update(app)
 
 available_deployers = [node]
 deployers = [deployer for deployer in available_deployers if deployer.detect(app)]
+
+if not deployers:
+    print("Cannot start app. Unknown stack type.")
+    sys.exit(255)
 
 for deployer in deployers:
     deployer.deploy(app)

@@ -22,3 +22,9 @@ def detect(app):
 def deploy(app):
     update_npm(app)
     restart(app)
+
+
+def server_command(app):
+    executable = "node"
+    process_name = "node"
+    return (executable, [process_name, "app.js"])
