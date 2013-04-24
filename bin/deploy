@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 from __future__ import absolute_import, division, print_function, unicode_literals
 import sys
-import node
+from config import App
+from node import GitDeploy
 
 
 if len(sys.argv) != 1 + 4:
@@ -9,5 +10,7 @@ if len(sys.argv) != 1 + 4:
     sys.exit(0)
 
 app_user, app_name, source_repo, app_dir = sys.argv[1:]
-deployer = node.GitDeploy(app_user, app_name, source_repo, app_dir)
+
+app = App(app_user, app_name, source_repo, app_dir)
+deployer = GitDeploy(app)
 deployer.deploy()
