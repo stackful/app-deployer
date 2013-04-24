@@ -18,10 +18,11 @@ class App(object):
 
         self.user = app_user
         self.name = config["stackful-node"]["app-name"]
-        self.source = "/home/{user}/{name}.git".format(user=self.user, name=self.name)
+        deploy_user = config["stackful-git"]["deploy-user"]
+        self.source = "/home/{deploy_user}/{name}.git".format(deploy_user=deploy_user, name=self.name)
         self.target = config["stackful-node"]["app-home"]
 
-    def get_current_user():
+    def get_current_user(self):
         return pwd.getpwuid(os.geteuid()).pw_name
 
     def run(self, cmd):
