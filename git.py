@@ -22,6 +22,7 @@ def pull_latest(app):
     app.run("git fetch -f origin master")
     app.run("git reset --hard FETCH_HEAD")
 
-def deploy(app):
+
+def update(app):
     ensure_repo(app)
     pull_latest(app)

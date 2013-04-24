@@ -13,6 +13,10 @@ app_user, app_name, source_repo, app_dir = sys.argv[1:]
 
 app = App(app_user, app_name, source_repo, app_dir)
 
-deployers = [git, node]
+git.update(app)
+
+available_deployers = [node]
+deployers = [deployer for deployer in available_deployers if deployer.detect(app)]
+
 for deployer in deployers:
     deployer.deploy(app)
