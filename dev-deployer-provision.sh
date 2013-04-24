@@ -24,3 +24,7 @@ else
 
     curl -L https://raw.github.com/stackful/stackful-node/master/bootstrap/install | python - master
 fi
+
+# Replace the stack-installed deployer with our dev version
+rm -rf /opt/stackful/app-deployer
+ln -s /vagrant /opt/stackful/app-deployer
