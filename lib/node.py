@@ -5,7 +5,7 @@ from commands import sudo
 def update_npm(app):
     # Pass the HOME folder so that npm writes its .npm dir somewhere it can
     # Ignore errors
-    app.run("HOME='{}' npm install || true".format(app.target))
+    app.run("HOME='{}' npm install || true".format(app.user_home))
 
 
 def restart(app):
@@ -16,7 +16,7 @@ def restart(app):
 
 
 def detect(app):
-    return app.has_file("package.json")
+    return app.has_file("package.json") and not app.has_file(".meteor")
 
 
 def deploy(app):

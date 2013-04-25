@@ -30,3 +30,7 @@ class App(object):
 
     def has_file(self, path):
         return os.path.exists(os.path.join(self.target, path))
+
+    @property
+    def user_home(self):
+        return "/home/{}".format(self.user)

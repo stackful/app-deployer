@@ -7,7 +7,7 @@ sys.path.insert(0, lib_dir)
 
 from config import App
 import sys
-import git, node
+import git, node, meteor
 
 if len(sys.argv) != 2:
     print("deploy <app-user>")
@@ -18,7 +18,7 @@ app_user = sys.argv[1].strip()
 app = App(app_user)
 git.update(app)
 
-available_deployers = [node]
+available_deployers = [meteor, node]
 deployers = [deployer for deployer in available_deployers if deployer.detect(app)]
 
 if not deployers:

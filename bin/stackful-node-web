@@ -6,7 +6,7 @@ lib_dir = os.path.join(project_dir, "lib")
 sys.path.insert(0, lib_dir)
 
 import json
-import node
+import node, meteor
 from config import App
 
 if len(sys.argv) != 2:
@@ -31,7 +31,7 @@ for f in flushables:
     f.flush()
 
 app = App()
-available_deployers = [node]
+available_deployers = [meteor, node]
 deployers = [deployer for deployer in available_deployers if deployer.detect(app)]
 if not deployers:
     print("Cannot start app. Unknown stack type.")
