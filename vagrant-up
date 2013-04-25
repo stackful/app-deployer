@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Prepare stack subfolder before provisioning
+if [ -d stackful-node ] ; then
+    echo "Stack repo already set up."
+else
+    git clone 'git@github.com:stackful/stackful-node.git' stackful-node
+    $(cd stackful-node && git submodule update --init)
+fi
+
+vagrant up

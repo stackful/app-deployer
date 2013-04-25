@@ -2,3 +2,6 @@
 .vagrant
 
 tags
+
+# stack git repo
+stackful-node

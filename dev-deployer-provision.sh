@@ -22,7 +22,8 @@ else
     mkdir -p /etc/stackful
     cp /vagrant/node.json.sample /etc/stackful/node.json
 
-    curl -L https://raw.github.com/stackful/stackful-node/master/bootstrap/install | python - master
+    # set up in your project folder by the vagrant-up wrapper script
+    /vagrant/stackful-node/run
 fi
 
 # Replace the stack-installed deployer with our dev version
