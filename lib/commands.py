@@ -13,7 +13,7 @@ def sudo(cmd, user="root"):
 
 
 def mkdir_p(path, root=False):
-    if not sudo:
+    if not root:
         run("mkdir -p '{}'".format(path))
     else:
         sudo("mkdir -p '{}'".format(path))
