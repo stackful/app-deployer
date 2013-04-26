@@ -1,5 +1,6 @@
 {
  "stackful-environment": {
+  "ROOT_URL": "http://10.100.0.2",
   "MONGO_URL": "mongodb://node-web:VRyisb15r2Q15OZ@localhost/node-web",
   "PORT": 3000
  },

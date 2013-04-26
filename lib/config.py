@@ -28,6 +28,9 @@ class App(object):
     def run(self, cmd):
         sudo("cd '{}' && {}".format(self.target, cmd), self.user)
 
+    def mkdir(self, path):
+        self.run("mkdir -p '{}'".format(path))
+
     def has_file(self, path):
         return os.path.exists(os.path.join(self.target, path))
 

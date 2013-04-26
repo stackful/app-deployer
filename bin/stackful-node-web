@@ -37,6 +37,8 @@ if not deployers:
     print("Cannot start app. Unknown stack type.")
     sys.exit(255)
 
-executable, args = deployers[0].server_command(app)
+working_dir, executable, args = deployers[0].server_command(app)
+if working_dir:
+    os.chdir(working_dir)
 #replace current process with node, passing the custom environment
 os.execvpe(executable, args, web_env)

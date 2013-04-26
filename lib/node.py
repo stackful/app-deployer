@@ -20,6 +20,7 @@ def detect(app):
 
 
 def deploy(app):
+    print("Deploying a vanilla Node.js/npm app...")
     update_npm(app)
     restart(app)
 
@@ -27,4 +28,4 @@ def deploy(app):
 def server_command(app):
     executable = "node"
     process_name = "node"
-    return (executable, [process_name, "app.js"])
+    return (None, executable, [process_name, "app.js"])
