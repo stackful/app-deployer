@@ -26,8 +26,8 @@ def unbundle(app):
 def fix_fibers_server_package(app):
     print("Fixing Fibers package installation.")
     app.run(r"""cd '{bundle}/bundle/server' && \
-HOME={home} npm uninstall fibers &>/dev/null && \
-HOME={home} npm install fibers &>/dev/null""".format(home=app.user_home, bundle=bundle_dir))
+HOME={home} npm uninstall fibers >/dev/null && \
+HOME={home} npm install fibers >/dev/null""".format(home=app.user_home, bundle=bundle_dir))
 
 
 def deploy(app):
