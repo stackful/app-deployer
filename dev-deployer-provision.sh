@@ -3,7 +3,8 @@
 export DEBIAN_FRONTEND=noninteractive
 
 # Get rid of the ancient Vagrant Chef
-sudo /opt/vagrant_ruby/bin/gem uninstall chef ohai
+# Not needed on boxes that already pack Chef 11
+# sudo /opt/vagrant_ruby/bin/gem uninstall chef ohai
 
 
 # Install latest Chef release, if needed
