@@ -17,6 +17,7 @@
   "app-name": "node-web",
   "db-password": "VRyisb15r2Q15OZ",
   "app-port": 3000,
+  "demo-repo": "demo-meteor-telescope",
   "app-home": "/var/www/node-web"
  }
 }
