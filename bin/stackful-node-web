@@ -9,11 +9,7 @@ import json
 import node, meteor
 from config import App
 
-if len(sys.argv) != 2:
-    print("stackful-node-web <config file>")
-    sys.exit(255)
-
-config_file = sys.argv[1]
+config_file = "/etc/stackful/node.json"
 with open(config_file, "r") as cf:
     config = json.load(cf)
 
@@ -34,7 +30,7 @@ app = App()
 available_deployers = [meteor, node]
 deployers = [deployer for deployer in available_deployers if deployer.detect(app)]
 if not deployers:
-    print("Cannot start app. Unknown stack type.")
+    print("Cannot start app. Unrecognized project type.")
     sys.exit(255)
 
 working_dir, executable, args = deployers[0].server_command(app)
