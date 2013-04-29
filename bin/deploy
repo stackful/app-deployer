@@ -9,9 +9,6 @@ from config import App
 import argparse
 import git, node, meteor
 
-import subprocess
-subprocess.call("id")
-
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument("user", type=str)
 arg_parser.add_argument("--skip-update", action="store_true", required=False,
