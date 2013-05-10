@@ -6,3 +6,5 @@ tags
 
 # stack git repo
 stackful-node
+
+.debs-cache
