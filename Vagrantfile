@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   end
 
 
-  config.vm.provision :shell, :path => "dev-deployer-provision.sh"
+  config.vm.provision :shell, :path => "dev-provision.sh"
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
