@@ -1,7 +1,8 @@
 from __future__ import absolute_import, division, print_function, unicode_literals
 import sys
 from config import App
-import git, node, meteor
+import git
+from deployers import node, meteor, python
 
 
 class Deployer(object):
@@ -15,7 +16,7 @@ class Deployer(object):
             git.update(self.app)
 
     def get_deployers(self):
-        available = [meteor, node]
+        available = [meteor, node, python]
         appropriate = [deployer for deployer in available if deployer.detect(self.app)]
         if not appropriate:
             print("No suitable deployer found for app. Giving up.")

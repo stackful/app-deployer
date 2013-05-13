@@ -1,4 +1,4 @@
-import node
+from __future__ import absolute_import, division, print_function, unicode_literals
 import os
 
 
@@ -36,7 +36,7 @@ def deploy(app):
     bundle(app)
     unbundle(app)
     fix_fibers_server_package(app)
-    node.restart(app)
+    app.restart()
 
 
 def server_command(app):
