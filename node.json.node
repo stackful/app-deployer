@@ -2,6 +2,7 @@
  "stackful-environment": {
   "ROOT_URL": "http://10.100.0.2",
   "MONGO_URL": "mongodb://node-web:VRyisb15r2Q15OZ@localhost/node-web",
+  "STACK_NAME": "stackful-node",
   "PORT": 3000
  },
  "stackful-git": {
