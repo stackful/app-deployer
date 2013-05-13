@@ -9,6 +9,11 @@
   "deploy-user": "git",
   "deployer-branch": "master"
  },
+ "postgresql": {
+    "password": {
+        "postgres": "VRyisb15r2Q15OZ"
+    }
+ },
  "run_list": [
   "role[python-webserver]"
  ],
