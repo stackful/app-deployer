@@ -3,13 +3,19 @@ import os, errno, subprocess
 
 
 def run(cmd):
-    subprocess.check_call(cmd, shell=True)
+    return subprocess.check_call(cmd, shell=True)
+
+def run_output(cmd):
+    return subprocess.check_output(cmd, shell=True)
 
 
-def sudo(cmd, user="root"):
+def sudo(cmd, user="root", output=False):
     escaped_quotes = cmd.replace('"', '\\"')
     sudo_cmd = "sudo -u {} sh -c \"{}\"".format(user, escaped_quotes)
-    run(sudo_cmd)
+    if not output:
+        return run(sudo_cmd)
+    else:
+        return run_output(sudo_cmd)
 
 
 def mkdir_p(path, root=False):
