@@ -28,4 +28,4 @@ update_stack() {
 update_stack "stackful-node"
 update_stack "stackful-python"
 
-#vagrant up
+vagrant up
