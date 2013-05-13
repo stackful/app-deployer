@@ -104,6 +104,6 @@ def deploy(app):
 
 
 def server_command(app):
-    executable = "/opt/virtualenvs/python-web/bin/python"
-    process_name = "django"
-    return (None, executable, [process_name, "app.js"])
+    executable = os.path.join(virtualenv, "bin", "gunicorn_django")
+    process_name = "gunicorn_django"
+    return (None, executable, [process_name, "--config=/etc/stackful/gunicorn.conf.py"])
