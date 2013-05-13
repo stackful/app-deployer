@@ -23,5 +23,5 @@ if [ -f "/etc/stackful/node.json" ] ; then
     echo "Stack already installed."
 else
     mkdir -p /etc/stackful
-    cp /vagrant/node.json.sample /etc/stackful/node.json
+    cp /vagrant/node.json.python /etc/stackful/node.json
 fi
