@@ -4,7 +4,7 @@
 
 tags
 
-# stack git repo
-stackful-node
+# stack git repos
+stackful-*
 
 .debs-cache
