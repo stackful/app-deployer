@@ -1,7 +1,6 @@
 {
  "stackful-environment": {
   "STACK_NAME": "stackful-python",
-  "DJANGO_SETTINGS_MODULE": "fafla.settings",
   "PORT": 3000
  },
  "stackful-git": {
