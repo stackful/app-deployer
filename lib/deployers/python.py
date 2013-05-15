@@ -65,7 +65,8 @@ def update_virtuelenv(app):
 
 def manage_py(app, cmdline="", output=False):
     manage_path = app.full_path("manage.py")
-    return app.run("{python} '{managepy}' {cmdline}".format(python=python,
+    db_vars = " ".join(["{}='{}'".format(k, v) for k, v in app.environment.items() if k.startswith("DB_")])
+    return app.run("{db_vars} {python} '{managepy}' {cmdline}".format(db_vars=db_vars, python=python,
                                                      managepy=manage_path, cmdline=cmdline),
             output=output)
 
