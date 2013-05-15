@@ -60,6 +60,7 @@ def update_environment(app):
 
 def update_virtuelenv(app):
     pip_path = os.path.join(virtualenv, "bin", "pip")
+    print("Updating virtualenv with required packages. This can take a while...")
     app.run("{} install -r '{}/requirements.txt'".format(pip_path, app.target))
 
 
