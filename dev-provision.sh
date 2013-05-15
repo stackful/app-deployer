@@ -18,10 +18,6 @@ else
     dpkg -i /vagrant/.debs-cache/chef.deb
 fi
 
-# Install stackful-node stack, if not there
-if [ -f "/etc/stackful/node.json" ] ; then
-    echo "Stack already installed."
-else
-    mkdir -p /etc/stackful
-    cp /vagrant/node.json.python /etc/stackful/node.json
-fi
+# Install node config
+mkdir -p /etc/stackful
+cp /vagrant/stackful-python/node.json.sample /etc/stackful/node.json
