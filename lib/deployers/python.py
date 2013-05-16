@@ -59,9 +59,12 @@ def update_environment(app):
 
 
 def update_virtuelenv(app):
-    pip_path = os.path.join(virtualenv, "bin", "pip")
+    pip = os.path.join(virtualenv, "bin", "pip")
     print("Updating virtualenv with required packages. This can take a while...")
-    app.run("{} install -r '{}/requirements.txt'".format(pip_path, app.target))
+    # Call via python -u to get unbuffered output. Nicer for progress display.
+    app.run("{python} -u {pip} install -r '{app_home}/requirements.txt'".format(python=python,
+                                                                                pip=pip,
+                                                                                app_home=app.target))
 
 
 def manage_py(app, cmdline="", output=False):
@@ -91,7 +94,6 @@ def migrate(app):
         manage_py(app, "migrate --noinput")
     else:
         print("No South migrations found.")
-
 
 
 def deploy(app):
