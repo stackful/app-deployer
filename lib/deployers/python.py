@@ -25,7 +25,7 @@ def update_django_settings(app):
         raise RuntimeError("Settings module not found.")
 
     print("Found Django settings module: {}".format(settings_module))
-    os.putenv("DJANGO_SETTINGS_MODULE", settings_module)
+    os.environ["DJANGO_SETTINGS_MODULE"] = settings_module
 
 
 def find_root_settings(app):
@@ -63,7 +63,7 @@ def find_module_grep(app):
 def update_environment(app):
     env = app.environment
     for key, value in env.items():
-        os.putenv(key, str(value))
+        os.environ[key] = str(value)
 
 
 def update_virtuelenv(app):
