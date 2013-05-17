@@ -15,16 +15,24 @@ def update_django_settings(app):
     if os.getenv("DJANGO_SETTINGS_MODULE"):
         return
 
-    settings_module = find_module_from_managepy(app)
+    settings_module = find_root_settings(app)
+    if not settings_module:
+        settings_module = find_module_from_managepy(app)
     if not settings_module:
         settings_module = find_module_grep(app)
 
     if not settings_module:
-        settings_module = "settings"
+        raise RuntimeError("Settings module not found.")
 
-    if settings_module:
-        print("Found Django settings module: {}".format(settings_module))
-        os.putenv("DJANGO_SETTINGS_MODULE", settings_module)
+    print("Found Django settings module: {}".format(settings_module))
+    os.putenv("DJANGO_SETTINGS_MODULE", settings_module)
+
+
+def find_root_settings(app):
+    if app.has_file("settings.py") or app.has_file("settings/__init__.py"):
+        return "settings"
+    else:
+        return None
 
 
 def find_module_from_managepy(app):
@@ -70,8 +78,11 @@ def update_virtuelenv(app):
 def manage_py(app, cmdline="", output=False):
     manage_path = app.full_path("manage.py")
     db_vars = " ".join(["{}='{}'".format(k, v) for k, v in app.environment.items()])
-    return app.run("{db_vars} {python} '{managepy}' {cmdline}".format(db_vars=db_vars, python=python,
-                                                     managepy=manage_path, cmdline=cmdline),
+    settings = "DJANGO_SETTINGS_MODULE='{}'".format(os.getenv("DJANGO_SETTINGS_MODULE"))
+    return app.run(
+        "{django_settings} {db_vars} {python} '{managepy}' {cmdline}".format(django_settings=settings,
+                                                                             db_vars=db_vars, python=python,
+                                                                             managepy=manage_path, cmdline=cmdline),
             output=output)
 
 
